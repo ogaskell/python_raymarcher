@@ -51,12 +51,12 @@ class Vector3:
     ### Binary Operators
 
     def __add__(self, other):
-        if isinstance(x,self):
+        if isinstance(other,type(self)):
             return Vector3(self.x + other.x,
                            self.y + other.y,
                            self.z + other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x + other,
                            self.y + other,
                            self.z + other)
@@ -65,12 +65,12 @@ class Vector3:
             raise TypeError("Can only add Vector3 to Vector3 or number")
 
     def __sub__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x - other.x,
                            self.y - other.y,
                            self.z - other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x - other,
                            self.y - other,
                            self.z - other)
@@ -79,12 +79,12 @@ class Vector3:
             raise TypeError("Can only subtract Vector3 or number from Vector3")
 
     def __mul__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x * other.x,
                            self.y * other.y,
                            self.z * other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x * other,
                            self.y * other,
                            self.z * other)
@@ -93,12 +93,12 @@ class Vector3:
             raise TypeError("Can only multiply Vector3 by Vector3 or number")
 
     def __floordiv__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x // other.x,
                            self.y // other.y,
                            self.z // other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x // other,
                            self.y // other,
                            self.z // other)
@@ -107,12 +107,12 @@ class Vector3:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
     def __truediv__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x / other.x,
                            self.y / other.y,
                            self.z / other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x / other,
                            self.y / other,
                            self.z / other)
@@ -121,12 +121,12 @@ class Vector3:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
     def __mod__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x % other.x,
                            self.y % other.y,
                            self.z % other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x % other,
                            self.y % other,
                            self.z % other)
@@ -135,12 +135,12 @@ class Vector3:
             raise TypeError("Can only modulus Vector3 by Vector3 or number")
 
     def __pow__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             return Vector3(self.x ** other.x,
                            self.y ** other.y,
                            self.z ** other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             return Vector3(self.x ** other,
                            self.y ** other,
                            self.z ** other)
@@ -151,12 +151,12 @@ class Vector3:
     ### Extended Assignments
 
     def __iadd__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x + other.x,
                            self.y + other.y,
                            self.z + other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x + other,
                            self.y + other,
                            self.z + other)
@@ -165,12 +165,12 @@ class Vector3:
             raise TypeError("Can only add Vector3 to Vector3 or number")
 
     def __isub__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x - other.x,
                            self.y - other.y,
                            self.z - other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x - other,
                            self.y - other,
                            self.z - other)
@@ -179,12 +179,12 @@ class Vector3:
             raise TypeError("Can only subtract Vector3 or number from Vector3")
 
     def __imul__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x * other.x,
                            self.y * other.y,
                            self.z * other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x * other,
                            self.y * other,
                            self.z * other)
@@ -193,12 +193,12 @@ class Vector3:
             raise TypeError("Can only multiply Vector3 by Vector3 or number")
 
     def __ifloordiv__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x // other.x,
                            self.y // other.y,
                            self.z // other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x // other,
                            self.y // other,
                            self.z // other)
@@ -207,12 +207,12 @@ class Vector3:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
     def __idiv__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x / other.x,
                            self.y / other.y,
                            self.z / other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x / other,
                            self.y / other,
                            self.z / other)
@@ -221,12 +221,12 @@ class Vector3:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
     def __imod__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x % other.x,
                            self.y % other.y,
                            self.z % other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x % other,
                            self.y % other,
                            self.z % other)
@@ -235,12 +235,12 @@ class Vector3:
             raise TypeError("Can only modulus Vector3 by Vector3 or number")
 
     def __ipow__(self, other):
-        if isinstance(x,self):
+        if isinstance(other, type(self)):
             self = Vector3(self.x ** other.x,
                            self.y ** other.y,
                            self.z ** other.z)
         
-        elif isinstance(x,numbers.Number):
+        elif isinstance(other,numbers.Number):
             self = Vector3(self.x ** other,
                            self.y ** other,
                            self.z ** other)
@@ -250,7 +250,7 @@ class Vector3:
 
     ### Comparison Operators
     def __eq__(self, other):
-        if isinstance(other, self):
+        if isinstance(other, type(self)):
             return (self.x == other.x) and (self.y == other.y) and (self.z == other.z)
         else:
             try:
