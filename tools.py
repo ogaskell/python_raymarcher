@@ -34,6 +34,20 @@ class Vector3:
                        min(self.y, value),
                        min(self.z, value))
 
+    ### Unary Operators
+    def __neg__(self):
+        return Vector3(- self.x,
+                       - self.y,
+                       - self.z)
+
+    def __pos__(self):
+        return self
+
+    def __abs__(self):
+        return Vector3(abs(self.x),
+                       abs(self.y),
+                       abs(self.z))
+
     ### Binary Operators
 
     def __add__(self, other):
@@ -233,6 +247,24 @@ class Vector3:
             
         else:
             raise TypeError("Can only raise Vector3 to the power of a Vector3 or number")
+
+    ### Comparison Operators
+    def __eq__(self, other):
+        if isinstance(other, self):
+            return (self.x == other.x) and (self.y == other.y) and (self.z == other.z)
+        else:
+            try:
+                if min( [isinstance(x, numbers.Number) for x in value] ):
+                    return (self.x == other[0]) and (self.y == other[1]) and (self.z == other[2])
+                else:
+                    raise TypeError
+            except:
+                raise TypeError("Can only compare Vector3 to Vector3 or length-3 iterable")
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
     
 
 def distance(pos1: Vector3, pos2: Vector3):
