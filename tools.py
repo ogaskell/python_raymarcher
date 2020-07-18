@@ -2,7 +2,13 @@ import math, numbers
 
 class Vector3:
     def __init__(self, x=0.0,y=0.0,z=0.0):
-        self.__set__(None, [x,y,z])
+        try:
+            if min( [isinstance(w, numbers.Number) for w in x] ):
+                self.__set__(None, x)
+            else:
+                raise TypeError
+        except:
+            self.__set__(None, [x,y,z])
 
     def __repr__(self):
         return "<Vector3 {:f}, {:f}, {:f}>".format(self.x, self.y, self.z)
@@ -20,7 +26,7 @@ class Vector3:
 
             else:
                 self = value
-            
+
         except:
             raise TypeError("Must set Vector3 to either a Vector3 or a length-3 iterable")
 
@@ -55,12 +61,12 @@ class Vector3:
             return Vector3(self.x + other.x,
                            self.y + other.y,
                            self.z + other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x + other,
                            self.y + other,
                            self.z + other)
-            
+
         else:
             raise TypeError("Can only add Vector3 to Vector3 or number")
 
@@ -69,12 +75,12 @@ class Vector3:
             return Vector3(self.x - other.x,
                            self.y - other.y,
                            self.z - other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x - other,
                            self.y - other,
                            self.z - other)
-            
+
         else:
             raise TypeError("Can only subtract Vector3 or number from Vector3")
 
@@ -83,12 +89,12 @@ class Vector3:
             return Vector3(self.x * other.x,
                            self.y * other.y,
                            self.z * other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x * other,
                            self.y * other,
                            self.z * other)
-            
+
         else:
             raise TypeError("Can only multiply Vector3 by Vector3 or number")
 
@@ -97,12 +103,12 @@ class Vector3:
             return Vector3(self.x // other.x,
                            self.y // other.y,
                            self.z // other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x // other,
                            self.y // other,
                            self.z // other)
-            
+
         else:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
@@ -111,12 +117,12 @@ class Vector3:
             return Vector3(self.x / other.x,
                            self.y / other.y,
                            self.z / other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x / other,
                            self.y / other,
                            self.z / other)
-            
+
         else:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
@@ -125,12 +131,12 @@ class Vector3:
             return Vector3(self.x % other.x,
                            self.y % other.y,
                            self.z % other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x % other,
                            self.y % other,
                            self.z % other)
-            
+
         else:
             raise TypeError("Can only modulus Vector3 by Vector3 or number")
 
@@ -139,12 +145,12 @@ class Vector3:
             return Vector3(self.x ** other.x,
                            self.y ** other.y,
                            self.z ** other.z)
-        
+
         elif isinstance(other,numbers.Number):
             return Vector3(self.x ** other,
                            self.y ** other,
                            self.z ** other)
-            
+
         else:
             raise TypeError("Can only raise Vector3 to the power of a Vector3 or number")
 
@@ -152,101 +158,118 @@ class Vector3:
 
     def __iadd__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x + other.x,
-                           self.y + other.y,
-                           self.z + other.z)
-        
+            self.x += other.x
+            self.y += other.y
+            self.z += other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x + other,
-                           self.y + other,
-                           self.z + other)
-            
+            self.x += other
+            self.y += other
+            self.z += other
+
         else:
             raise TypeError("Can only add Vector3 to Vector3 or number")
 
+        return self
+
     def __isub__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x - other.x,
-                           self.y - other.y,
-                           self.z - other.z)
-        
+            self.x -= other.x
+            self.y -= other.y
+            self.z -= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x - other,
-                           self.y - other,
-                           self.z - other)
-            
+            self.x -= other
+            self.y -= other
+            self.z -= other
+
         else:
             raise TypeError("Can only subtract Vector3 or number from Vector3")
 
+        return self
+
     def __imul__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x * other.x,
-                           self.y * other.y,
-                           self.z * other.z)
-        
+            self.x *= other.x
+            self.y *= other.y
+            self.z *= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x * other,
-                           self.y * other,
-                           self.z * other)
-            
+            self.x *= other
+            self.y *= other
+            self.z *= other
+
         else:
             raise TypeError("Can only multiply Vector3 by Vector3 or number")
 
+        return self
+
     def __ifloordiv__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x // other.x,
-                           self.y // other.y,
-                           self.z // other.z)
-        
+            self.x //= other.x
+            self.y //= other.y
+            self.z //= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x // other,
-                           self.y // other,
-                           self.z // other)
-            
+            self.x //= other
+            self.y //= other
+            self.z //= other
+
         else:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
 
-    def __idiv__(self, other):
+        return self
+
+    def __itruediv__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x / other.x,
-                           self.y / other.y,
-                           self.z / other.z)
-        
+            self.x /= other.x
+            self.y /= other.y
+            self.z /= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x / other,
-                           self.y / other,
-                           self.z / other)
-            
+            self.x /= other
+            self.y /= other
+            self.z /= other
+
         else:
             raise TypeError("Can only divide Vector3 by Vector3 or number")
+
+        return self
 
     def __imod__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x % other.x,
-                           self.y % other.y,
-                           self.z % other.z)
-        
+            self.x %= other.x
+            self.y %= other.y
+            self.z %= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x % other,
-                           self.y % other,
-                           self.z % other)
-            
+            self.x %= other
+            self.y %= other
+            self.z %= other
+
         else:
             raise TypeError("Can only modulus Vector3 by Vector3 or number")
 
+        return self
+
     def __ipow__(self, other):
         if isinstance(other, type(self)):
-            self = Vector3(self.x ** other.x,
-                           self.y ** other.y,
-                           self.z ** other.z)
-        
+            self.x **= other.x
+            self.y **= other.y
+            self.z **= other.z
+
         elif isinstance(other,numbers.Number):
-            self = Vector3(self.x ** other,
-                           self.y ** other,
-                           self.z ** other)
-            
+            self.x **= other
+            self.y **= other
+            self.z **= other
+
         else:
             raise TypeError("Can only raise Vector3 to the power of a Vector3 or number")
+
+        return self
+
+    def sum(self):
+        return self.x + self.y + self.z
 
     ### Comparison Operators
     def __eq__(self, other):
@@ -264,8 +287,14 @@ class Vector3:
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def dist(self, other):
+        if not isinstance(other, type(self)):
+            try:
+                if min( [isinstance(x, numbers.Number) for x in other] ):
+                    other = Vector3(other)
+                else:
+                    raise TypeError
+            except:
+                raise TypeError("Can only find distance between Vector3 and Vector3 or length-3 iterable")
 
-    
-
-def distance(pos1: Vector3, pos2: Vector3):
-    return math.sqrt( ( pos1.x - pos2.x )**2 + ( pos1.y - pos2.y )**2 + ( pos1.z - pos2.z )**2)
+        return math.sqrt( ((self-other)**2).sum() )
