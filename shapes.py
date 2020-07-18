@@ -1,11 +1,24 @@
-from tools import Vector3, distance
+from tools import Vector3, distance, ORIGIN
 
 class Sphere:
     def __init__(self, center: Vector3, radius: int, color=[255,0,0]):
-        self.pos = center
-        self.radius = radius
+        self.C = center
+        self.R = radius
 
         self.color = color
 
     def dist(self, pos: Vector3):
         return distance(self.pos, pos) - self.radius
+
+class Cuboid:
+    def __init__(self, center: Vector3, semisize: Vector3, color=[255,255,0]):
+        self.C = center
+        self.R = semisize
+
+        self.color = color
+
+    def dist(self, P: Vector3):
+        rel_P = abs(P) - self.R
+        Q = rel_P - self.R
+
+        return Q.max(0).dist()
