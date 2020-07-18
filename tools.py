@@ -287,7 +287,7 @@ class Vector3:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def dist(self, other):
+    def dist(self, other=Vector3()):
         if not isinstance(other, type(self)):
             try:
                 if min( [isinstance(x, numbers.Number) for x in other] ):
@@ -297,4 +297,4 @@ class Vector3:
             except:
                 raise TypeError("Can only find distance between Vector3 and Vector3 or length-3 iterable")
 
-        return math.sqrt( ((self-other)**2).sum() )
+        return math.sqrt( ((self-pos)**2).sum() )
