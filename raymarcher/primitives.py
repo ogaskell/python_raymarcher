@@ -1,4 +1,4 @@
-from tools import Vector3
+from .tools import Vector3
 
 
 class Sphere:

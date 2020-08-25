@@ -1,6 +1,7 @@
-from tools import Vector3
 import unittest
 import math
+
+from raymarcher.tools import Vector3
 
 
 class TestVector3(unittest.TestCase):
