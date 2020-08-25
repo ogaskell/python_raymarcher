@@ -282,7 +282,7 @@ class Vector3:
                 else:
                     raise TypeError
             except:
-                raise TypeError("Can only compare Vector3 to Vector3 or length-3 iterable")
+                return False
 
     def __ne__(self, other):
         return not self.__eq__(other)
