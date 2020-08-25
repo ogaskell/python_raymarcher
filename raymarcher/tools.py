@@ -1,14 +1,16 @@
-import math, numbers
+import math
+import numbers
+
 
 class Vector3:
-    def __init__(self, x=0.0,y=0.0,z=0.0):
+    def __init__(self, x=0.0, y=0.0, z=0.0):
         try:
-            if min( [isinstance(w, numbers.Number) for w in x] ):
+            if min([isinstance(w, numbers.Number) for w in x]):
                 self.__set__(None, x)
             else:
                 raise TypeError
-        except:
-            self.__set__(None, [x,y,z])
+        except TypeError:
+            self.__set__(None, [x, y, z])
 
     def __repr__(self):
         return "<Vector3 {:f}, {:f}, {:f}>".format(self.x, self.y, self.z)
@@ -19,15 +21,15 @@ class Vector3:
     def __set__(self, obj, value):
         try:
             if type(value) != type(self):
-                if not min( [isinstance(x, numbers.Number) for x in value] ):
+                if not min([isinstance(x, numbers.Number) for x in value]):
                     raise TypeError
 
-                self.x,self.y,self.z = map(float,value)
+                self.x, self.y, self.z = map(float, value)
 
             else:
                 self = value
 
-        except:
+        except TypeError:
             raise TypeError("Must set Vector3 to either a Vector3 or a length-3 iterable")
 
     def max(self, value):
@@ -40,7 +42,7 @@ class Vector3:
                        min(self.y, value),
                        min(self.z, value))
 
-    ### Unary Operators
+    # Unary Operators
     def __neg__(self):
         return Vector3(- self.x,
                        - self.y,
@@ -54,15 +56,15 @@ class Vector3:
                        abs(self.y),
                        abs(self.z))
 
-    ### Binary Operators
+    # Binary Operators
 
     def __add__(self, other):
-        if isinstance(other,type(self)):
+        if isinstance(other, type(self)):
             return Vector3(self.x + other.x,
                            self.y + other.y,
                            self.z + other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x + other,
                            self.y + other,
                            self.z + other)
@@ -76,7 +78,7 @@ class Vector3:
                            self.y - other.y,
                            self.z - other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x - other,
                            self.y - other,
                            self.z - other)
@@ -90,7 +92,7 @@ class Vector3:
                            self.y * other.y,
                            self.z * other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x * other,
                            self.y * other,
                            self.z * other)
@@ -104,7 +106,7 @@ class Vector3:
                            self.y // other.y,
                            self.z // other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x // other,
                            self.y // other,
                            self.z // other)
@@ -118,7 +120,7 @@ class Vector3:
                            self.y / other.y,
                            self.z / other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x / other,
                            self.y / other,
                            self.z / other)
@@ -132,7 +134,7 @@ class Vector3:
                            self.y % other.y,
                            self.z % other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x % other,
                            self.y % other,
                            self.z % other)
@@ -146,7 +148,7 @@ class Vector3:
                            self.y ** other.y,
                            self.z ** other.z)
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             return Vector3(self.x ** other,
                            self.y ** other,
                            self.z ** other)
@@ -154,7 +156,7 @@ class Vector3:
         else:
             raise TypeError("Can only raise Vector3 to the power of a Vector3 or number")
 
-    ### Extended Assignments
+    # Extended Assignments
 
     def __iadd__(self, other):
         if isinstance(other, type(self)):
@@ -162,7 +164,7 @@ class Vector3:
             self.y += other.y
             self.z += other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x += other
             self.y += other
             self.z += other
@@ -178,7 +180,7 @@ class Vector3:
             self.y -= other.y
             self.z -= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x -= other
             self.y -= other
             self.z -= other
@@ -194,7 +196,7 @@ class Vector3:
             self.y *= other.y
             self.z *= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x *= other
             self.y *= other
             self.z *= other
@@ -210,7 +212,7 @@ class Vector3:
             self.y //= other.y
             self.z //= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x //= other
             self.y //= other
             self.z //= other
@@ -226,7 +228,7 @@ class Vector3:
             self.y /= other.y
             self.z /= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x /= other
             self.y /= other
             self.z /= other
@@ -242,7 +244,7 @@ class Vector3:
             self.y %= other.y
             self.z %= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x %= other
             self.y %= other
             self.z %= other
@@ -258,7 +260,7 @@ class Vector3:
             self.y **= other.y
             self.z **= other.z
 
-        elif isinstance(other,numbers.Number):
+        elif isinstance(other, numbers.Number):
             self.x **= other
             self.y **= other
             self.z **= other
@@ -271,17 +273,17 @@ class Vector3:
     def sum(self):
         return self.x + self.y + self.z
 
-    ### Comparison Operators
+    # Comparison Operators
     def __eq__(self, other):
         if isinstance(other, type(self)):
             return (self.x == other.x) and (self.y == other.y) and (self.z == other.z)
         else:
             try:
-                if min( [isinstance(x, numbers.Number) for x in other] ):
+                if min([isinstance(x, numbers.Number) for x in other]):
                     return (self.x == other[0]) and (self.y == other[1]) and (self.z == other[2])
                 else:
                     raise TypeError
-            except:
+            except TypeError:
                 return False
 
     def __ne__(self, other):
@@ -289,14 +291,14 @@ class Vector3:
 
     def dist(self, other="None"):
         if other == "None":
-            other = [0,0,0]
+            other = [0, 0, 0]
         if not isinstance(other, type(self)):
             try:
-                if min( [isinstance(x, numbers.Number) for x in other] ):
+                if min([isinstance(x, numbers.Number) for x in other]):
                     other = Vector3(other)
                 else:
                     raise TypeError
-            except:
+            except TypeError:
                 raise TypeError("Can only find distance between Vector3 and Vector3 or length-3 iterable")
 
-        return math.sqrt( ((self-other)**2).sum() )
+        return math.sqrt(((self-other)**2).sum())
