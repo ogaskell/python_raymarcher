@@ -30,6 +30,8 @@ class Renderer:
         for pixel_y in tqdm(range(self.dimensions[0]), desc="row"):  # Loop through rows
 
             for pixel_x in range(self.dimensions[1]):  # Loop through each pixel in row
+                # print(pixel_x, pixel_y)
+                # print(self.camera.pixels[pixel_y, pixel_x])
 
                 distance = 9999  # placeholder while distance isnt set
                 P = Vector3()    # end of ray
@@ -41,6 +43,7 @@ class Renderer:
                     # print(distance)
 
                     P = self.camera.ray_pos([pixel_y, pixel_x], P.dist()+distance)
+                    # print("\t"+str(P))
 
                 if P.z < self.far_clipping_plane:
                     color = self.shapes[distances.index(sorted(distances)[0])].color
@@ -60,22 +63,23 @@ class Camera:
 
         self.res = resolution
         self.aspect = resolution[1]/resolution[0]
+        print(self.aspect)
         self.hfov = fov
         self.vfov = fov/self.aspect
+        print(self.hfov, self.vfov)
 
         self.calculate_pixels()
 
     def pixel_pos(self,
                   screen_center: Vector3,
-                  screen_tr: Vector3,
+                  screen_bl: Vector3,
                   pix_ind):
 
-        pix_width = (abs(screen_tr - screen_center)*2).x / self.res[1]
-        # pix_height = (abs(screen_tr - screen_center)*2).y / self.res[0]
+        pix_width = (abs(screen_bl - screen_center)*2).x / self.res[1]
         pix_height = pix_width
 
-        pix_x = (0.5 + pix_ind[1]) * pix_width
-        pix_y = (0.5 + pix_ind[0]) * pix_height
+        pix_x = screen_bl.x + ((0.5 + pix_ind[1]) * pix_width)
+        pix_y = screen_bl.y + ((0.5 + pix_ind[0]) * pix_height)
         pix_z = screen_center.z
 
         return Vector3(pix_x,
@@ -85,11 +89,13 @@ class Camera:
     def calculate_pixels(self):
         pixel_positions = np.full(self.res, Vector3())
 
-        for y in range(-self.res[0]//2, self.res[0]//2):
-            for x in range(-self.res[1]//2, self.res[1]//2):
+        print(-math.tan(self.hfov/2), -math.tan(self.vfov/2))
+
+        for y in range(self.res[0]):
+            for x in range(self.res[1]):
                 pixel_positions[y, x] = self.pixel_pos(Vector3(0, 0, 1),
-                                                       Vector3(math.tan(self.hfov/2),
-                                                               math.tan(self.vfov/2),
+                                                       Vector3(-math.tan(math.radians(self.hfov/2)),
+                                                               -math.tan(math.radians(self.vfov/2)),
                                                                1),
                                                        [y, x])
 
