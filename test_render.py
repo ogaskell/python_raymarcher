@@ -1,10 +1,10 @@
 from PIL import Image
 import sys
 
-from raymarcher.shapes import Sphere
+from raymarcher.primitives import Sphere
 from raymarcher.tools import Vector3
 
-from raymarcher.raymarch import Renderer
+from raymarcher.march import Renderer
 
 params = sys.argv
 if len(sys.argv) == 1:
