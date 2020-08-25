@@ -1,12 +1,10 @@
-import numpy as np
 from PIL import Image
 import sys
-from tqdm import tqdm
 
-from shapes import *
-from tools import *
+from raymarcher.shapes import Sphere
+from raymarcher.tools import Vector3
 
-from raymarch import *
+from raymarcher.raymarch import Renderer
 
 params = sys.argv
 if len(sys.argv) == 1:
