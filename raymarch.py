@@ -1,8 +1,6 @@
 import numpy as np
-from PIL import Image
 from tqdm import tqdm
 
-from shapes import *
 from tools import *
 
 class Renderer:
