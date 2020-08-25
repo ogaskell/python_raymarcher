@@ -1,7 +1,11 @@
 # python_raymarcher
 A Ray Marcher rendering engine built in Python.
 
-Very much still in development. The plan is for this to eventually be able to render complex scenes with relative speed, and include a set of basic shaders so it can produce a decent looking image out of the box. However it will be extensible with support for shader modules. 
+Very much still in development.
+
+The engine works, and can render images, but is very buggy, very slow and has very few features.
+
+The plan is for this to eventually be able to render complex scenes with relative speed, and include a set of basic shaders so it can produce a decent looking image out of the box. However it will be extensible with support for shader modules.
 
 ### raymarch.py
 The main rendering engine. Defines shapes and renders the scene.
