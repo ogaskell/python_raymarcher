@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 
-from tools import *
+from tools import Vector3
 
 class Renderer:
     def __init__(self,
