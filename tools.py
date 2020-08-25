@@ -277,7 +277,7 @@ class Vector3:
             return (self.x == other.x) and (self.y == other.y) and (self.z == other.z)
         else:
             try:
-                if min( [isinstance(x, numbers.Number) for x in value] ):
+                if min( [isinstance(x, numbers.Number) for x in other] ):
                     return (self.x == other[0]) and (self.y == other[1]) and (self.z == other[2])
                 else:
                     raise TypeError
@@ -297,4 +297,4 @@ class Vector3:
             except:
                 raise TypeError("Can only find distance between Vector3 and Vector3 or length-3 iterable")
 
-        return math.sqrt( ((self-pos)**2).sum() )
+        return math.sqrt( ((self-other)**2).sum() )
