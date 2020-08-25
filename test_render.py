@@ -38,7 +38,6 @@ engine = Renderer((OUTPUT_HEIGHT, OUTPUT_WIDTH),
 
 print("Beginning render")
 image = engine.render()
-print(image)
 
 # create image
 pil_img = Image.fromarray(image)

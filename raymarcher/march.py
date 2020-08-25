@@ -62,7 +62,6 @@ class Camera:
         self.aspect = resolution[1]/resolution[0]
         self.hfov = fov
         self.vfov = fov/self.aspect
-        print(self.vfov)
 
         self.calculate_pixels()
 
