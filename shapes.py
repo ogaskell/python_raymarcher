@@ -7,6 +7,9 @@ class Sphere:
 
         self.color = color
 
+    def __repr__(self):
+        return "Sphere at "+str(self.C)
+
     def dist(self, pos: Vector3):
         return distance(self.pos, pos) - self.radius
 
@@ -16,6 +19,9 @@ class Cuboid:
         self.R = semisize
 
         self.color = color
+
+    def __repr__(self):
+        return "Cuboid at "+str(self.C)
 
     def dist(self, P: Vector3):
         rel_P = abs(P) - self.R
