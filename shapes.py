@@ -1,7 +1,7 @@
 from tools import Vector3, distance, ORIGIN
 
 class Sphere:
-    def __init__(self, center: Vector3, radius: int, color=[255,0,0]):
+    def __init__(self, center: Vector3, radius: int, color=127):
         self.C = center
         self.R = radius
 
@@ -14,7 +14,7 @@ class Sphere:
         return distance(self.pos, pos) - self.radius
 
 class Cuboid:
-    def __init__(self, center: Vector3, semisize: Vector3, color=[255,255,0]):
+    def __init__(self, center: Vector3, semisize: Vector3, color=255):
         self.C = center
         self.R = semisize
 
