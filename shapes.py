@@ -1,4 +1,4 @@
-from tools import Vector3, distance, ORIGIN
+from tools import Vector3
 
 class Sphere:
     def __init__(self, center: Vector3, radius: int, color=127):
