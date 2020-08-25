@@ -1,5 +1,6 @@
 from tools import Vector3
 import unittest
+import math
 
 class TestVector3(unittest.TestCase):
     vector = Vector3(-1, 2.3, 5)
@@ -205,6 +206,8 @@ class TestVector3(unittest.TestCase):
                                             self.vector.y-5,
                                             self.vector.z+5]),
                           75**0.5 )
+
+        self.assertEqual( self.vector.dist() , math.sqrt((self.vector**2).sum()))
 
 
 
