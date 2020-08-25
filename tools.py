@@ -287,7 +287,9 @@ class Vector3:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def dist(self, other=Vector3()):
+    def dist(self, other="None"):
+        if other == "None":
+            other = [0,0,0]
         if not isinstance(other, type(self)):
             try:
                 if min( [isinstance(x, numbers.Number) for x in other] ):
