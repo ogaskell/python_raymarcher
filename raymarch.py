@@ -4,6 +4,7 @@ import math
 
 from tools import Vector3
 
+
 class Renderer:
     def __init__(self,
                  output_dimensions,
@@ -26,16 +27,15 @@ class Renderer:
     def render(self):
         self.clear()
 
-        for pixel_y in tqdm(range(self.dimensions[0]),desc="row   "): #Loop through rows
+        for pixel_y in tqdm(range(self.dimensions[0]), desc="row"):  # Loop through rows
 
-            for pixel_x in range(self.dimensions[1]): #Loop through each pixel in row
+            for pixel_x in range(self.dimensions[1]):  # Loop through each pixel in row
 
-                distance = 9999 #placeholder while distance isnt set
-                P = Vector3() #end of ray
-                bg = False #hit the background?
+                distance = 9999  # placeholder while distance isnt set
+                P = Vector3()    # end of ray
 
-                while distance > 0.02 and P.z < self.far_clipping_plane: #hit something
-                    distances = list(map(lambda x:x.dist(P),self.shapes))
+                while distance > 0.02 and P.z < self.far_clipping_plane:  # hit something
+                    distances = list(map(lambda x: x.dist(P), self.shapes))
                     distance = min(distances)
 
                     # print(distance)
@@ -47,13 +47,11 @@ class Renderer:
                     # print("Hit",self.shapes[distances.index(sorted(distances)[0])])
                 else:
                     color = self.bg
-                    # print("Background")
 
-                #print(color)
-                self.image[pixel_y,pixel_x] = color
-            # print("Rendered {:03d} of {:03d} rows".format(pixel_y+1, self.dimensions[0]))
+                self.image[pixel_y, pixel_x] = color
 
         return self.image
+
 
 class Camera:
     def __init__(self,
@@ -73,7 +71,7 @@ class Camera:
                   screen_tr: Vector3,
                   pix_ind):
 
-        pix_width  = (abs(screen_tr - screen_center)*2).x / self.res[1]
+        pix_width = (abs(screen_tr - screen_center)*2).x / self.res[1]
         # pix_height = (abs(screen_tr - screen_center)*2).y / self.res[0]
         pix_height = pix_width
 
@@ -86,15 +84,15 @@ class Camera:
                        pix_z)
 
     def calculate_pixels(self):
-        pixel_positions = np.full(self.res,Vector3())
+        pixel_positions = np.full(self.res, Vector3())
 
-        for y in range(-self.res[0]//2,self.res[0]//2):
-            for x in range(-self.res[1]//2,self.res[1]//2):
-                pixel_positions[y,x] = self.pixel_pos(Vector3(0,0,1),
-                                                      Vector3(math.tan(self.hfov/2),
-                                                              math.tan(self.vfov/2),
-                                                              1),
-                                                      [y,x])
+        for y in range(-self.res[0]//2, self.res[0]//2):
+            for x in range(-self.res[1]//2, self.res[1]//2):
+                pixel_positions[y, x] = self.pixel_pos(Vector3(0, 0, 1),
+                                                       Vector3(math.tan(self.hfov/2),
+                                                               math.tan(self.vfov/2),
+                                                               1),
+                                                       [y, x])
 
         self.pixels = pixel_positions
 
@@ -102,7 +100,7 @@ class Camera:
                 pix_ind,
                 length):
 
-        screen_pos = self.pixels[pix_ind[0],pix_ind[1]]
+        screen_pos = self.pixels[pix_ind[0], pix_ind[1]]
 
         normalised_pos = screen_pos/screen_pos.dist()
 
