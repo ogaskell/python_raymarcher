@@ -11,7 +11,7 @@ class Sphere:
         return "Sphere at "+str(self.C)
 
     def dist(self, pos: Vector3):
-        return distance(self.pos, pos) - self.radius
+        return self.C.dist(pos) - self.R
 
 class Cuboid:
     def __init__(self, center: Vector3, semisize: Vector3, color=255):
